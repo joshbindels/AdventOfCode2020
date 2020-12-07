@@ -27,7 +27,7 @@ int main() {
     int numOfValidPassports = 0;
     int validFields = 0;
     int tmpnum = 0;
-    ifstream input("input_data.txt");
+    ifstream input("input_data.txtraz");
     for(string line; getline(input, line);)
     {
         if(line.length() == 0) {
@@ -86,12 +86,13 @@ int main() {
                 }
             }
             else if(values.at(0) == "pid") {
-                if(values.at(1).length() == 9) {
+                if(values.at(1).length() == 9 && values.at(1).find_first_not_of("0123456789") == string::npos) {
                     validFields++;
                 }
             }
         }
     }
+    if(validFields == 7) numOfValidPassports++;
     cout << numOfValidPassports << " valid passports." << endl;
 
 }
